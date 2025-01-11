@@ -40,6 +40,11 @@ test("throw error if any negative number is present in the input", () => {
   expect(() => sum("22,11,-44,-55,101")).toThrowError("negative numbers are not allowed -44,-55");
 })
 
+test("ignore numbers larger than 1000 while adding", () => {
+  expect(sum("1,2,1002")).toBe(3);
+  expect(sum("1,2,4,5,1002")).toBe(12);
+})
+
 function firstNNaturalNumbers(count: number, delimiter: string = ',') {
   const result: number[] = [];
   for (let i = 1; i <= count; i++) {

@@ -33,5 +33,6 @@ export default function sum(numbersList: string): number {
   }
 
   return numbers
+    .filter(number => number <= 1000)
     .reduce((a, b) => a + b, 0);
 }
