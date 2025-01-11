@@ -5,32 +5,24 @@ test("return 0 if numbers string is empty", () => {
   expect(sum("")).toBe(0);
 })
 
-test("if there is only one number in numbers string return the same number", () => {
+test("return the same number when there is only one number in numbers string", () => {
   expect(sum("1")).toBe(1)
   expect(sum("2")).toBe(2)
   expect(sum("24")).toBe(24)
 })
 
-test("when input has multiple numbers separated by ',' add all of them to return the sum", () => {
+test("add multiple numbers separated by , or \\n", () => {
   expect(sum("1,2")).toBe(3)
-  expect(sum("5,6")).toBe(11)
-  expect(sum("1,2,3")).toBe(6);
   expect(sum("5,8,3,10")).toBe(26);
-  expect(sum(firstNNaturalNumbers(50))).toBe(1275);
   expect(sum(firstNNaturalNumbers(99))).toBe(4950);
-})
-
-test("add numbers even if they are separated by '\\n' instead of ','", () => {
-  expect(sum("1\n2")).toBe(3);
   expect(sum("1\n2\n3")).toBe(6);
-  expect(sum("1\n2,3")).toBe(6);
   expect(sum("5,8\n3\n10")).toBe(26);
 })
 
-test("use custom delimiter when the input starts with the pattern '//custom_delimiter\\n'", () => {
+test("add numbers separated by custom delimiter when input starts with pattern //custom_delimiter\n", () => {
   expect(sum("//;\n1;2;3")).toBe(6);
-  expect(sum("//;\n" + firstNNaturalNumbers(25, ';'))).toBe(325);
-  expect(sum("//#\n" + firstNNaturalNumbers(12, '#'))).toBe(78);
+  expect(sum("//[##]\n" + firstNNaturalNumbers(25, '##'))).toBe(325);
+  expect(sum("//[***]\n1***2***3")).toBe(6);
 })
 
 test("throw error if any negative number is present in the input", () => {
@@ -43,11 +35,6 @@ test("throw error if any negative number is present in the input", () => {
 test("ignore numbers larger than 1000 while adding", () => {
   expect(sum("1,2,1002")).toBe(3);
   expect(sum("1,2,4,5,1002")).toBe(12);
-})
-
-test("use custom delimiter of length more than 1 when the input starts with the pattern '//[custom_delimiter]\\n'", () => {
-  expect(sum("//[***]\n1***2***3")).toBe(6);
-  expect(sum("//[#@]\n1#@2#@3")).toBe(6);
 })
 
 function firstNNaturalNumbers(count: number, delimiter: string = ',') {
