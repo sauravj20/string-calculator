@@ -11,18 +11,19 @@ test("if there is only one number in numbers string return the same number", () 
   expect(sum("24")).toBe(24)
 })
 
-test("when input is 1 and 2 separated by a ',' add them to return 3", () => {
+test("when input has multiple numbers separated by ',' add all of them to return the sum", () => {
   expect(sum("1,2")).toBe(3)
-})
-
-test("when input is 5 and 6 separated by a ',' add them to return 11", () => {
   expect(sum("5,6")).toBe(11)
-})
-
-test("when input has 3 numbers separated by ',' add all of them to return the sum", () => {
   expect(sum("1,2,3")).toBe(6);
+  expect(sum("5,8,3,10")).toBe(26);
+  expect(sum(firstNNaturalNumbers(50))).toBe(1275);
+  expect(sum(firstNNaturalNumbers(99))).toBe(4950);
 })
 
-test("when input has 4 numbers separated by ',' add all of them to return the sum", () => {
-  expect(sum("5,8,3,10")).toBe(26);
-})
+function firstNNaturalNumbers(count: number) {
+  const result: number[] = [];
+  for (let i = 1; i <= count; i++) {
+    result.push(i);
+  }
+  return result.join(",");
+}
