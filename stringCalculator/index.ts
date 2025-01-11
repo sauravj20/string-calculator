@@ -26,8 +26,10 @@ export default function sum(numbersList: string): number {
     return 0;
   }
   const numbers = getNumbers(numbersList);
-  if (numbers.some(number => number < 0)) {
-    throw Error(`negative numbers are not allowed ${numbers.find(number => number < 0)}`);
+
+  const negativeNumbers = numbers.filter(number => number < 0);
+  if (negativeNumbers.length > 0) {
+    throw Error(`negative numbers are not allowed ${negativeNumbers.join(",")}`);
   }
 
   return numbers

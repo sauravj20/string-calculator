@@ -37,6 +37,10 @@ test("throw error if any negative number is present in the input", () => {
   expect(() => sum("1,2,-3,4,5")).toThrowError("negative numbers are not allowed -3");
 })
 
+test("show all the negative numbers in the error message throws if negative numbers are present", () => {
+  expect(() => sum("1,2,-3,-4,5")).toThrowError("negative numbers are not allowed -3,-4");
+})
+
 function firstNNaturalNumbers(count: number, delimiter: string = ',') {
   const result: number[] = [];
   for (let i = 1; i <= count; i++) {
