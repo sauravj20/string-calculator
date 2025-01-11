@@ -33,6 +33,10 @@ test("use custom delimiter when the input starts with the pattern '//custom_deli
   expect(sum("//#\n" + firstNNaturalNumbers(12, '#'))).toBe(78);
 })
 
+test("throw error if any negative number is present in the input", () => {
+  expect(() => sum("1,2,-3,4,5")).toThrowError("negative numbers are not allowed -3");
+})
+
 function firstNNaturalNumbers(count: number, delimiter: string = ',') {
   const result: number[] = [];
   for (let i = 1; i <= count; i++) {

@@ -26,6 +26,9 @@ export default function sum(numbersList: string): number {
     return 0;
   }
   const numbers = getNumbers(numbersList);
+  if (numbers.some(number => number < 0)) {
+    throw Error(`negative numbers are not allowed ${numbers.find(number => number < 0)}`);
+  }
 
   return numbers
     .reduce((a, b) => a + b, 0);
