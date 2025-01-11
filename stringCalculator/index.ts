@@ -1,22 +1,32 @@
-function separateDelimiterAndNumbers(numbersList: string) {
-  if (numbersList[0] === '/' && numbersList[1] === '/') {
-    return {
-      DELIMITER: new RegExp(numbersList[2]),
-      numbers: numbersList.substring(4)
-    };
+function getNumbers(numbersList: string) {
+  let numbersOnlyString: string;
+  if (hasCustomDelimiter(numbersList)) {
+    numbersOnlyString = numbersList.substring(4);
+  } else {
+    numbersOnlyString = numbersList;
   }
-  return {DELIMITER: /[,\n]/, numbers: numbersList};
+
+  return numbersOnlyString.split(getDelimiter(numbersList)).map(Number);
+}
+
+function getDelimiter(numbersList: string): RegExp {
+  const DEFAULT_DELIMITERS = /[,\n]/;
+  if (hasCustomDelimiter(numbersList)) {
+    return new RegExp(numbersList[2]);
+  }
+  return DEFAULT_DELIMITERS;
+}
+
+function hasCustomDelimiter(numbersList: string): boolean {
+  return numbersList[0] === '/' && numbersList[1] === '/'
 }
 
 export default function sum(numbersList: string): number {
   if (numbersList === "") {
     return 0;
   }
-
-  const {DELIMITER, numbers} = separateDelimiterAndNumbers(numbersList);
+  const numbers = getNumbers(numbersList);
 
   return numbers
-    .split(DELIMITER)
-    .map(Number)
     .reduce((a, b) => a + b, 0);
 }
