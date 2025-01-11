@@ -35,10 +35,9 @@ test("use custom delimiter when the input starts with the pattern '//custom_deli
 
 test("throw error if any negative number is present in the input", () => {
   expect(() => sum("1,2,-3,4,5")).toThrowError("negative numbers are not allowed -3");
-})
-
-test("show all the negative numbers in the error message throws if negative numbers are present", () => {
   expect(() => sum("1,2,-3,-4,5")).toThrowError("negative numbers are not allowed -3,-4");
+  expect(() => sum("1,-2,-3,-4,5")).toThrowError("negative numbers are not allowed -2,-3,-4");
+  expect(() => sum("22,11,-44,-55,101")).toThrowError("negative numbers are not allowed -44,-55");
 })
 
 function firstNNaturalNumbers(count: number, delimiter: string = ',') {
