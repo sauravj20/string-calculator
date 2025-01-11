@@ -21,16 +21,19 @@ function hasCustomDelimiter(numbersList: string): boolean {
   return numbersList[0] === '/' && numbersList[1] === '/'
 }
 
+function validatePositive(numbers: number[]) {
+  const negativeNumbers = numbers.filter(number => number < 0);
+  if (negativeNumbers.length > 0) {
+    throw Error(`negative numbers are not allowed ${negativeNumbers.join(",")}`);
+  }
+}
+
 export default function sum(numbersList: string): number {
   if (numbersList === "") {
     return 0;
   }
   const numbers = getNumbers(numbersList);
-
-  const negativeNumbers = numbers.filter(number => number < 0);
-  if (negativeNumbers.length > 0) {
-    throw Error(`negative numbers are not allowed ${negativeNumbers.join(",")}`);
-  }
+  validatePositive(numbers);
 
   return numbers
     .filter(number => number <= 1000)
