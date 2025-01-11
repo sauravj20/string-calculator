@@ -20,6 +20,13 @@ test("when input has multiple numbers separated by ',' add all of them to return
   expect(sum(firstNNaturalNumbers(99))).toBe(4950);
 })
 
+test("add numbers even if they are separated by '\\n' instead of ','", () => {
+  expect(sum("1\n2")).toBe(3);
+  expect(sum("1\n2\n3")).toBe(6);
+  expect(sum("1\n2,3")).toBe(6);
+  expect(sum("5,8\n3\n10")).toBe(26);
+})
+
 function firstNNaturalNumbers(count: number) {
   const result: number[] = [];
   for (let i = 1; i <= count; i++) {

@@ -3,7 +3,7 @@ function sum(numbers: string): number {
     return 0;
   }
 
-  const DELIMITER = ",";
+  const DELIMITER = /[,\n]/;
 
   return numbers
     .split(DELIMITER)
