@@ -3,8 +3,10 @@ function sum(numbers: string): number {
     return 0;
   }
 
+  const DELIMITER = ",";
+
   return numbers
-    .split(",")
+    .split(DELIMITER)
     .map(Number)
     .reduce((a, b) => a + b, 0);
 }
