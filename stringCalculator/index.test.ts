@@ -45,6 +45,11 @@ test("ignore numbers larger than 1000 while adding", () => {
   expect(sum("1,2,4,5,1002")).toBe(12);
 })
 
+test("use custom delimiter of length more than 1 when the input starts with the pattern '//[custom_delimiter]\\n'", () => {
+  expect(sum("//[***]\n1***2***3")).toBe(6);
+  expect(sum("//[#@]\n1#@2#@3")).toBe(6);
+})
+
 function firstNNaturalNumbers(count: number, delimiter: string = ',') {
   const result: number[] = [];
   for (let i = 1; i <= count; i++) {

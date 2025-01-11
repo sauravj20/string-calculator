@@ -1,7 +1,7 @@
 function getNumbers(numbersList: string) {
   let numbersOnlyString: string;
   if (hasCustomDelimiter(numbersList)) {
-    numbersOnlyString = numbersList.substring(4);
+    numbersOnlyString = numbersList.split('\n')[1];
   } else {
     numbersOnlyString = numbersList;
   }
@@ -12,9 +12,21 @@ function getNumbers(numbersList: string) {
 function getDelimiter(numbersList: string): RegExp {
   const DEFAULT_DELIMITERS = /[,\n]/;
   if (hasCustomDelimiter(numbersList)) {
-    return new RegExp(numbersList[2]);
+    return new RegExp(extractCustomDelimiter(numbersList));
   }
   return DEFAULT_DELIMITERS;
+}
+
+function extractCustomDelimiter(numbersList: string): string {
+  const stringWithoutCustomDelimiterMarker = numbersList.substring(2);
+  const [delimiterPattern] = stringWithoutCustomDelimiterMarker.split('\n');
+  let delimiter: string;
+  if (delimiterPattern[0] === '[' && delimiterPattern[delimiterPattern.length - 1] === ']') {
+    delimiter = delimiterPattern.substring(1, delimiterPattern.length - 1);
+  } else {
+    delimiter = delimiterPattern
+  }
+  return delimiter.split('').map(char => `\\${char}`).join('');
 }
 
 function hasCustomDelimiter(numbersList: string): boolean {
