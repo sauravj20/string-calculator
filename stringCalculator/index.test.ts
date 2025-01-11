@@ -27,10 +27,16 @@ test("add numbers even if they are separated by '\\n' instead of ','", () => {
   expect(sum("5,8\n3\n10")).toBe(26);
 })
 
-function firstNNaturalNumbers(count: number) {
+test("use custom delimiter when the input starts with the pattern '//custom_delimiter\\n'", () => {
+  expect(sum("//;\n1;2;3")).toBe(6);
+  expect(sum("//;\n" + firstNNaturalNumbers(25, ';'))).toBe(325);
+  expect(sum("//#\n" + firstNNaturalNumbers(12, '#'))).toBe(78);
+})
+
+function firstNNaturalNumbers(count: number, delimiter: string = ',') {
   const result: number[] = [];
   for (let i = 1; i <= count; i++) {
     result.push(i);
   }
-  return result.join(",");
+  return result.join(delimiter);
 }
