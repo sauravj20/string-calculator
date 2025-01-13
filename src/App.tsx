@@ -15,7 +15,7 @@ function App() {
       <section className="input-section">
         <label htmlFor="number-input">
           Enter Numbers
-          <input type="text" id="number-input" value={input}
+          <textarea id="number-input" value={input}
                  onChange={(e) => setInput(e.target.value)}/>
         </label>
         <button onClick={addNumbers}>Add</button>
