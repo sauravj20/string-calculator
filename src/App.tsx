@@ -7,7 +7,11 @@ function App() {
   const [result, setResult] = useState<number>(0);
 
   function addNumbers() {
-    setResult(sum(input));
+    try {
+      setResult(sum(input));
+    } catch (error) {
+      alert((error as Error).message);
+    }
   }
 
   return (

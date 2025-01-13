@@ -1,6 +1,6 @@
 import {cleanup, render, screen} from "@testing-library/react";
 import {UserEvent, userEvent} from "@testing-library/user-event";
-import {afterEach, describe, test} from "vitest";
+import {afterEach, describe, expect, test, vi} from "vitest";
 import App from "./App.tsx";
 
 describe("String Calculator UI", () => {
@@ -50,6 +50,17 @@ describe("String Calculator UI", () => {
 
     await updateInputAndAdd(user, "//[[##][[@@]{enter}1##6@@3##10")
     getByText("Result: 20")
+  })
+
+  test("show alert to user if any negative numbers are present in the input", async () => {
+    const user = userEvent.setup()
+    const alertMock = vi.spyOn(window, 'alert').mockImplementation(() => {});
+    const {getByText} = render(<App/>);
+
+    await updateInputAndAdd(user, "1,2,-3,-4")
+    await user.click(getByText("Add"))
+
+    expect(alertMock).toHaveBeenCalledWith("negative numbers are not allowed -3,-4")
   })
 
   async function updateInputAndAdd(user: UserEvent, userInput: string) {
