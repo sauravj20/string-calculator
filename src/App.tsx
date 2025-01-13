@@ -19,13 +19,15 @@ function App() {
       <section className="input-section">
         <label htmlFor="number-input">
           Enter Numbers
-          <textarea id="number-input" value={input}
-                 onChange={(e) => setInput(e.target.value)}/>
         </label>
+        <textarea
+          id="number-input"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}/>
         <button onClick={addNumbers}>Add</button>
       </section>
 
-      <section className="Results">
+      <section className="results">
         Result: {result}
       </section>
     </div>
