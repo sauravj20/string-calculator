@@ -33,3 +33,8 @@ test("use multi character custom delimiter when the input starts with the patter
   expect(new NumberStringParser("//[***]\n1***2***3").extractNumbers()).toEqual([1, 2, 3]);
   expect(new NumberStringParser("//[#@]\n1#@2#@3").extractNumbers()).toEqual([1, 2, 3]);
 })
+
+test("use multiple multi character delimiters when input starts with pattern '//[delimiter1][delimiter2][delimiter3]\\n'", () => {
+  expect(new NumberStringParser("//[***][#@]\n1***2***3#@25#@10").extractNumbers()).toEqual([1, 2, 3, 25, 10]);
+  expect(new NumberStringParser("//[##][*][@@]\n11##46*3##25@@10").extractNumbers()).toEqual([11, 46, 3, 25, 10]);
+})

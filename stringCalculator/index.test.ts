@@ -23,6 +23,7 @@ test("add numbers separated by custom delimiter when input starts with pattern /
   expect(sum("//;\n1;2;3")).toBe(6);
   expect(sum("//[##]\n" + firstNNaturalNumbers(25, '##'))).toBe(325);
   expect(sum("//[***]\n1***2***3")).toBe(6);
+  expect(sum("//[*][;][#]\n1*2;3#4")).toBe(10);
 })
 
 test("throw error if any negative number is present in the input", () => {

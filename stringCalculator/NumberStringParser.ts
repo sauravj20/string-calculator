@@ -32,11 +32,22 @@ export default class NumberStringParser {
     const [delimiterPattern] = stringWithoutCustomDelimiterMarker.split('\n');
     let delimiter: string;
     if (this.isMultiCharDelimiter(delimiterPattern)) {
-      delimiter = delimiterPattern.substring(1, delimiterPattern.length - 1);
+      const separateDelimiters = this.splitMultipleDelimiters(delimiterPattern);
+      delimiter = separateDelimiters.map(this.escapeSpecialChars).join('|');
     } else {
-      delimiter = delimiterPattern
+      delimiter = this.escapeSpecialChars(delimiterPattern)
     }
+    return delimiter;
+  }
+
+  private escapeSpecialChars(delimiter: string) {
+    // escaping all the chars as escaping normal chars doesn't affect anything
     return delimiter.split('').map(char => `\\${char}`).join('');
+  }
+
+  private splitMultipleDelimiters(delimiterPattern: string) {
+    const patternWithoutOuterBrackets = delimiterPattern.substring(1, delimiterPattern.length - 1);
+    return patternWithoutOuterBrackets.split("][")
   }
 
   private isMultiCharDelimiter(delimiterPattern: string) {
