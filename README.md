@@ -1,50 +1,32 @@
-# React + TypeScript + Vite
+# String Calculator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is an implementation of a string calculator.
+- The user can enter numbers in the input and click the 'Add' button to get their sum. 
+- The numbers can be separated by ',' or a new line (enter click inside textbox)
+- Users can also specify a custom delimiters in following ways:
+  - for single char delimiter enter `//delimiter\n` before entering numbers separated by `delimiter`. ex: `//;\n1;2;3;4`
+  - for multi char delimiters enter `//[delimiter]\n` before entering numbers separated by `delimiter`. ex: `//[#$#$]\n1#$#$2#$#$3#$#$4`
+  - for multiple delimiters enter `//[delimiter1][delimiter2]\n` before entering numbers separated by `delimiter1` or `delimiter2`. ex: `//[**][##]\n1**2##3**4`
 
-Currently, two official plugins are available:
+### Run the project:
+1. Clone the repo and change directory to project root
+2. run `npm install`
+3. run `npm run dev`. This would start a dev server on port 5173
+4. Open `localhost:5173` in your browser
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To run the tests run the command:
+- `npm run test`
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Git Commits
+The project follows following template for git commit messages
 
-- Configure the top-level `parserOptions` property like this:
+`<TYPE> | FEATURE | message`
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+The different values of `TYPE` are following:
+- feature (new feature for the user, not a new feature for build script)
+- docs (changes to the documentation)
+- style (formatting, missing semi-colons, etc.; no production code change)
+- refactor (refactoring production code, e.g. renaming a variable)
+- test (adding missing tests, refactoring tests; no production code change)
+- chore (updating grunt tasks etc.; no production code change)
