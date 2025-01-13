@@ -1,9 +1,22 @@
-import {render} from "@testing-library/react";
-import { test } from "vitest";
+import {cleanup, render} from "@testing-library/react";
+import {afterEach, describe, test} from "vitest";
 import App from "./App.tsx";
 
-test("show input box on the screen", () => {
-  const { getByLabelText } = render(<App />)
+describe("String Calculator UI", () => {
+  afterEach(() => {
+    cleanup();
+  })
 
-  getByLabelText("Enter Numbers");
+  test("show input box on the screen", () => {
+    const {getByLabelText} = render(<App/>);
+
+    getByLabelText("Enter Numbers");
+  })
+
+  test("show a button to calculate the sum of numbers in the input", () => {
+    const {getByText} = render(<App/>);
+
+    getByText("Add");
+  })
+
 })

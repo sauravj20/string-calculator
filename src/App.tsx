@@ -7,6 +7,7 @@ function App() {
         Enter Numbers
         <input type="text" id="number-input" />
       </label>
+      <button>Add</button>
     </div>
   )
 }
