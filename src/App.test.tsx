@@ -19,4 +19,10 @@ describe("String Calculator UI", () => {
     getByText("Add");
   })
 
+  test("show default result as 0 on the screen", () => {
+    const {getByText} = render(<App/>);
+
+    getByText("Result: 0");
+  })
+
 })
