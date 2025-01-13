@@ -30,14 +30,12 @@ export default class NumberStringParser {
   private extractCustomDelimiter(): string {
     const stringWithoutCustomDelimiterMarker = this.input.substring(2);
     const [delimiterPattern] = stringWithoutCustomDelimiterMarker.split('\n');
-    let delimiter: string;
+
     if (this.isMultiCharDelimiter(delimiterPattern)) {
       const separateDelimiters = this.splitMultipleDelimiters(delimiterPattern);
-      delimiter = separateDelimiters.map(this.escapeSpecialChars).join('|');
-    } else {
-      delimiter = this.escapeSpecialChars(delimiterPattern)
+      return separateDelimiters.map(this.escapeSpecialChars).join('|');
     }
-    return delimiter;
+    return this.escapeSpecialChars(delimiterPattern)
   }
 
   private escapeSpecialChars(delimiter: string) {
